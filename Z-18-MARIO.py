@@ -26,16 +26,16 @@ datp = False
 jumpCount = jumpMin
 
 bg = pygame.image.load("D:/VS_code/GAME/bg.png")
-pleyerSRS = pygame.image.load("D:/VS_code/GAME/sprits/statusS/Lmario-stand-r-2.png")
-pleyerSLS = pygame.image.load("D:/VS_code/GAME/sprits/statusS/Lmario-stand-l-2.png")
-pleyerJRS = pygame.image.load("D:/VS_code/GAME/sprits/statusS/Lmario-jump-r-2.png")
-pleyerJLS = pygame.image.load("D:/VS_code/GAME/sprits/statusS/Lmario-jump-l-2.png")
-pleyerSLB = pygame.image.load("D:/VS_code\GAME/sprits/statusB/Bmario-stand-l-2.png")
-pleyerSRB = pygame.image.load("D:/VS_code\GAME/sprits/statusB/Bmario-stand-r-2.png")
-pleyerJLB = pygame.image.load("D:/VS_code\GAME/sprits/statusB/Bmario-jump-l-2.png")
-pleyerJRB = pygame.image.load("D:/VS_code\GAME/sprits/statusB/Bmario-jump-r-2.png")
-pleyerDLB = pygame.image.load("D:/VS_code\GAME/sprits/statusB/Bmario-Down-l.png")
-pleyerDRB = pygame.image.load("D:/VS_code\GAME/sprits/statusB/Bmario-Down-r.png")
+pleyerSRS = pygame.image.load("D:/GAME/sprits/statusS/Lmario-stand-r-2.png")
+pleyerSLS = pygame.image.load("D:/GAME/sprits/statusS/Lmario-stand-l-2.png")
+pleyerJRS = pygame.image.load("D:/GAME/sprits/statusS/Lmario-jump-r-2.png")
+pleyerJLS = pygame.image.load("D:/GAME/sprits/statusS/Lmario-jump-l-2.png")
+pleyerSLB = pygame.image.load("D:/GAME/sprits/statusB/Bmario-stand-l-2.png")
+pleyerSRB = pygame.image.load("D:/GAME/sprits/statusB/Bmario-stand-r-2.png")
+pleyerJLB = pygame.image.load("D:/GAME/sprits/statusB/Bmario-jump-l-2.png")
+pleyerJRB = pygame.image.load("D:/GAME/sprits/statusB/Bmario-jump-r-2.png")
+pleyerDLB = pygame.image.load("D:/GAME/sprits/statusB/Bmario-Down-l.png")
+pleyerDRB = pygame.image.load("D:/GAME/sprits/statusB/Bmario-Down-r.png")
 
 statusSp = 2  
 statusB = False
