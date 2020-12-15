@@ -18,7 +18,8 @@ pygame.display.set_caption('its me MARIO!!!')
 x = 100
 y = 365
 xbg = 0
-# изначальные кординаты игрока
+xMin, xMax, yMin, yMax = 670, 700, 275, 235 
+# изначальные кординаты 
 
 heightS, widthS = 37, 37
 heightB, widthB = 66, 33
@@ -61,7 +62,6 @@ while run:
         if event.type == pygame.QUIT:
             run = False
 # условия закрытия игры
-
     statusD = False
 
     if keys[pygame.K_s] or keys[pygame.K_DOWN]:
@@ -75,8 +75,11 @@ while run:
             statusD = False
         elif xbg < 0:
             xbg += speed
+            xMin += speed
+            xMax += speed
+
+
 # движение в лево
-# иначе движение камеры
 
     if keys[pygame.K_RIGHT] or keys[pygame.K_d] :
         if x < 1340:
@@ -85,8 +88,10 @@ while run:
             statusD = False
         elif xbg < 6768:
             xbg -= speed
+            xMin -= speed
+            xMax -= speed
+
 # движение в право 
-# иначе движение камеры
 
     if keys[pygame.K_q] and y > 0:
         y -= speed - 4  
@@ -100,7 +105,7 @@ while run:
 # движение в вниз
 # "y += speed"  потомушто у пайгейм другая система кординат         
 
-    xMin, xMax, yMin, yMax = 670, 700, 275, 235   
+    #xMin, xMax, yMin, yMax = 670, 700, 275, 235   
 
     #def gribchek(xMin, xMax, yMin, yMax):
     if x >= xMin and x <= xMax and y <= yMin and y >= yMax:
