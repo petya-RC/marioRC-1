@@ -9,7 +9,7 @@ in order for it to work, you must have Python3 and pygame installed
 you need to create a folder "GAME" on the "D:" drive and put all the foils there
 
 RU:
-для того чтоб оно тработало надо чтоб у вас был установлен Python3 и модуль pygame
+для того чтоб оно заработало надо чтоб у вас был установлен Python3 и модуль pygame
 
 >дальше
 
