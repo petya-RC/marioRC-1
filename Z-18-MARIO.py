@@ -1,5 +1,6 @@
 import module as m
 import pygame 
+import os
 
 
 pygame.init()
@@ -25,24 +26,73 @@ heightS, widthS = 37, 37
 heightB, widthB = 66, 33
 heightBD, widthBD = 47, 34
 #высота, шырина
-speed = 10.0
+speed = 5.0
 
-jumpMin = 9
+jumpMin = 10.5
 isjump = False
 jumpCount = jumpMin
 # параметры прыжка
 
-bg = pygame.image.load("D:/VS_code/GAME/bg.png")
-pleyerSRS = pygame.image.load("D:/GAME/Lmario-stand-r-2.png")
-pleyerSLS = pygame.image.load("D:/GAME/Lmario-stand-l-2.png")
-pleyerJRS = pygame.image.load("D:/GAME/Lmario-jump-r-2.png")
-pleyerJLS = pygame.image.load("D:/GAME/Lmario-jump-l-2.png")
-pleyerSLB = pygame.image.load("D:/GAME/Bmario-stand-l-2.png")
-pleyerSRB = pygame.image.load("D:/GAME/Bmario-stand-r-2.png")
-pleyerJLB = pygame.image.load("D:/GAME/Bmario-jump-l-2.png")
-pleyerJRB = pygame.image.load("D:/GAME/Bmario-jump-r-2.png")
-pleyerDLB = pygame.image.load("D:/GAME/Bmario-Down-l.png")
-pleyerDRB = pygame.image.load("D:/GAME/Bmario-Down-r.png")
+file_path = os.path.dirname(__file__)
+
+# создаем папку "sprite"
+file_sprite = (file_path + "\\sprite\\" )
+
+file_sprite_folder = [(file_path + "\\bg.png"), (file_path + "\\Lmario-stand-r-2.png"), (file_path + "\\Lmario-stand-l-2.png"), (file_path + "\\Lmario-jump-r-2.png"),
+(file_path + "\\Lmario-jump-l-2.png"), (file_path + "\\Bmario-stand-r-2.png"), (file_path + "\\Bmario-stand-l-2.png"), (file_path + "\\Bmario-jump-r-2.png"),
+(file_path + "\\Bmario-jump-l-2.png"),(file_path + "\\Bmario-Down-r.png"),  (file_path + "\\Bmario-Down-l.png")]
+
+sprite_list = ['bg.png', "Lmario-stand-r-2.png", "Lmario-stand-l-2.png", "Lmario-jump-r-2.png", "Lmario-jump-l-2.png", "Bmario-stand-r-2.png", "Bmario-stand-l-2.png", 
+"Bmario-jump-r-2.png", "Bmario-jump-l-2.png", "Bmario-Down-r.png", "Bmario-Down-l.png"] 
+
+a = 0
+run_plus = True
+
+if (os.path.exists(file_path + "\\sprite\\Bmario-Down-l.png")):
+    sprite_path = os.path.join(file_path, "sprite/bg.png")  
+    bg = pygame.image.load(sprite_path)
+    sprite_path = os.path.join(file_path, "sprite/Lmario-stand-r-2.png")
+    pleyerSRS = pygame.image.load(sprite_path)
+    sprite_path = os.path.join(file_path, "sprite/Lmario-stand-l-2.png")
+    pleyerSLS = pygame.image.load(sprite_path)
+    sprite_path = os.path.join(file_path, "sprite/Lmario-jump-r-2.png")
+    pleyerJRS = pygame.image.load(sprite_path)
+    sprite_path = os.path.join(file_path, "sprite/Lmario-jump-l-2.png")
+    pleyerJLS = pygame.image.load(sprite_path)
+    prite_path = os.path.join(file_path, "sprite/Bmario-stand-r-2.png")
+    pleyerSRB = pygame.image.load(sprite_path)
+    sprite_path = os.path.join(file_path, "sprite/Bmario-stand-l-2.png")
+    pleyerSLB = pygame.image.load(sprite_path)
+    sprite_path = os.path.join(file_path, "sprite/Bmario-jump-r-2.png")
+    pleyerJRB = pygame.image.load(sprite_path)
+    sprite_path = os.path.join(file_path, "sprite/Bmario-jump-l-2.png")
+    pleyerJLB = pygame.image.load(sprite_path)
+    sprite_path = os.path.join(file_path, "sprite/Bmario-Down-r.png")
+    pleyerDRB = pygame.image.load(sprite_path)
+    sprite_path = os.path.join(file_path, "sprite/Bmario-Down-l.png")
+    pleyerDLB = pygame.image.load(sprite_path)
+else:
+    while run_plus:
+        if(os.path.exists(file_sprite)):
+            for i in range(11):
+                os.replace(file_sprite_folder[a], file_sprite + sprite_list[a])
+                a += 1
+                run_plus = False
+        else:
+            os.makedirs(file_sprite, exist_ok=True)
+
+
+#bg = pygame.image.load("D:/GAME_MARIO/bg.png")
+#pleyerSRS = pygame.image.load("D:/GAME_MARIO/sprits/statusS/Lmario-stand-r-2.png")
+#pleyerSLS = pygame.image.load("D:/GAME_MARIO/sprits/statusS/Lmario-stand-l-2.png")
+#pleyerJRS = pygame.image.load("D:/GAME_MARIO/sprits/statusS/Lmario-jump-r-2.png")
+#pleyerJLS = pygame.image.load("D:/GAME_MARIO/sprits/statusS/Lmario-jump-l-2.png")
+#pleyerSLB = pygame.image.load("D:\GAME_MARIO/sprits/statusB/Bmario-stand-l-2.png")
+#pleyerSRB = pygame.image.load("D:\GAME_MARIO/sprits/statusB/Bmario-stand-r-2.png")
+#pleyerJLB = pygame.image.load("D:\GAME_MARIO/sprits/statusB/Bmario-jump-l-2.png")
+#pleyerJRB = pygame.image.load("D:\GAME_MARIO/sprits/statusB/Bmario-jump-r-2.png")
+#pleyerDLB = pygame.image.load("D:\GAME_MARIO/sprits/statusB/Bmario-Down-l.png")
+#pleyerDRB = pygame.image.load("D:\GAME_MARIO/sprits/statusB/Bmario-Down-r.png")
 # объявляем изображения
 
 statusSp = 2  
@@ -54,7 +104,7 @@ statusB, statusD = False, False
 run = True
 
 while run:
-    clock.tick(18)
+    clock.tick(60)
 #fps
     keys = pygame.key.get_pressed() 
 # зажатие или нажатия клавиш
@@ -136,10 +186,10 @@ while run:
     else:
         if jumpCount >= -jumpMin:
             if jumpCount < 0:
-                y += (jumpCount ** 2) / 2
+                y += (jumpCount ** 2) / 5
             else:
-                y -= (jumpCount ** 2) / 2
-            jumpCount -= 1
+                y -= (jumpCount ** 2) / 5
+            jumpCount -= 0.5
 # прыжок
         else:
             isjump = False
@@ -181,6 +231,7 @@ while run:
     print(speed, x, y, statusB)
 # ето временое отображение характеристик
     pygame.display.update()
+
 
 
 
