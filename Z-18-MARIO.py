@@ -9,12 +9,14 @@ clock = pygame.time.Clock()
 #fps
 
 heightWin = 448
-widthWin = 6768  
+widthWin = 1366  
 sizeWin = (1366, 448)
 # велечина окна
 
 win = pygame.display.set_mode(sizeWin)
 pygame.display.set_caption('its me MARIO!!!')
+
+
 
 x = 100
 y = 365
@@ -26,60 +28,46 @@ heightS, widthS = 37, 37
 heightB, widthB = 66, 33
 heightBD, widthBD = 47, 34
 #высота, шырина
-speed = 5.0
+speed = 7.0
 
-jumpMin = 10.5
 isjump = False
-jumpCount = jumpMin
+jumpCount, fallCount = 10.5, 7.5
+
 # параметры прыжка
 
 file_path = os.path.dirname(__file__)
 
-# создаем папку "sprite"
-file_sprite = (file_path + "\\sprite\\" )
-
-file_sprite_folder = [(file_path + "\\bg.png"), (file_path + "\\Lmario-stand-r-2.png"), (file_path + "\\Lmario-stand-l-2.png"), (file_path + "\\Lmario-jump-r-2.png"),
-(file_path + "\\Lmario-jump-l-2.png"), (file_path + "\\Bmario-stand-r-2.png"), (file_path + "\\Bmario-stand-l-2.png"), (file_path + "\\Bmario-jump-r-2.png"),
-(file_path + "\\Bmario-jump-l-2.png"),(file_path + "\\Bmario-Down-r.png"),  (file_path + "\\Bmario-Down-l.png")]
-
-sprite_list = ['bg.png', "Lmario-stand-r-2.png", "Lmario-stand-l-2.png", "Lmario-jump-r-2.png", "Lmario-jump-l-2.png", "Bmario-stand-r-2.png", "Bmario-stand-l-2.png", 
-"Bmario-jump-r-2.png", "Bmario-jump-l-2.png", "Bmario-Down-r.png", "Bmario-Down-l.png"] 
+pygame.mixer.music.load((file_path + "\saundtrek.mp3"))
+pygame.mixer.music.set_volume(0.5)
 
 a = 0
 run_plus = True
 
-if (os.path.exists(file_path + "\\sprite\\Bmario-Down-l.png")):
-    sprite_path = os.path.join(file_path, "sprite/bg.png")  
-    bg = pygame.image.load(sprite_path)
-    sprite_path = os.path.join(file_path, "sprite/Lmario-stand-r-2.png")
-    pleyerSRS = pygame.image.load(sprite_path)
-    sprite_path = os.path.join(file_path, "sprite/Lmario-stand-l-2.png")
-    pleyerSLS = pygame.image.load(sprite_path)
-    sprite_path = os.path.join(file_path, "sprite/Lmario-jump-r-2.png")
-    pleyerJRS = pygame.image.load(sprite_path)
-    sprite_path = os.path.join(file_path, "sprite/Lmario-jump-l-2.png")
-    pleyerJLS = pygame.image.load(sprite_path)
-    prite_path = os.path.join(file_path, "sprite/Bmario-stand-r-2.png")
-    pleyerSRB = pygame.image.load(sprite_path)
-    sprite_path = os.path.join(file_path, "sprite/Bmario-stand-l-2.png")
-    pleyerSLB = pygame.image.load(sprite_path)
-    sprite_path = os.path.join(file_path, "sprite/Bmario-jump-r-2.png")
-    pleyerJRB = pygame.image.load(sprite_path)
-    sprite_path = os.path.join(file_path, "sprite/Bmario-jump-l-2.png")
-    pleyerJLB = pygame.image.load(sprite_path)
-    sprite_path = os.path.join(file_path, "sprite/Bmario-Down-r.png")
-    pleyerDRB = pygame.image.load(sprite_path)
-    sprite_path = os.path.join(file_path, "sprite/Bmario-Down-l.png")
-    pleyerDLB = pygame.image.load(sprite_path)
-else:
-    while run_plus:
-        if(os.path.exists(file_sprite)):
-            for i in range(11):
-                os.replace(file_sprite_folder[a], file_sprite + sprite_list[a])
-                a += 1
-                run_plus = False
-        else:
-            os.makedirs(file_sprite, exist_ok=True)
+pleyer = pygame.Surface((37, 37))
+
+sprite_path = os.path.join(file_path, "sprite/bg.png")  
+bg = pygame.image.load(sprite_path)
+sprite_path = os.path.join(file_path, "sprite/Lmario-stand-r.png")
+pleyerSRS = pygame.image.load(sprite_path)
+sprite_path = os.path.join(file_path, "sprite/Lmario-stand-l.png")
+pleyerSLS = pygame.image.load(sprite_path)
+sprite_path = os.path.join(file_path, "sprite/Lmario-jump-r.png")
+pleyerJRS = pygame.image.load(sprite_path)
+sprite_path = os.path.join(file_path, "sprite/Lmario-jump-l.png")
+pleyerJLS = pygame.image.load(sprite_path)
+
+sprite_path = os.path.join(file_path, "sprite/Bmario-stand-r.png")
+pleyer1 = pygame.image.load(sprite_path)
+sprite_path = os.path.join(file_path, "sprite/Bmario-stand-l.png")
+pleyerSLB = pygame.image.load(sprite_path)
+sprite_path = os.path.join(file_path, "sprite/Bmario-jump-r.png")
+pleyerJRB = pygame.image.load(sprite_path)
+sprite_path = os.path.join(file_path, "sprite/Bmario-jump-l.png")
+pleyerJLB = pygame.image.load(sprite_path)
+sprite_path = os.path.join(file_path, "sprite/Bmario-Down-r.png")
+pleyerDRB = pygame.image.load(sprite_path)
+sprite_path = os.path.join(file_path, "sprite/Bmario-Down-l.png")
+pleyerDLB = pygame.image.load(sprite_path)
 
 
 #bg = pygame.image.load("D:/GAME_MARIO/bg.png")
@@ -95,13 +83,47 @@ else:
 #pleyerDRB = pygame.image.load("D:\GAME_MARIO/sprits/statusB/Bmario-Down-r.png")
 # объявляем изображения
 
+class colaider ():
+    xMin = 0
+    xMax = 0
+    yMin = 0
+    yMax = 0
+
+
+
+
 statusSp = 2  
-statusB, statusD = False, False
+statusB, statusD, Winner, p, DownUp = False, False, False, False, False
+score = 0
+time = 24000
+
+trumpet1 = colaider()
+trumpet1.xMin = 865
+trumpet1.xMax = 960
+trumpet1.yMax = 300
+trumpet1.yMin = 365
+
+trumpet2 = colaider()
+trumpet2.xMin = 1190
+trumpet2.xMax = 1275
+trumpet2.yMax = 250
+trumpet2.yMin = 365
+
 
 #keys = pygame.key.get_pressed() 
 # зажатие или нажатия клавиш
 
+xMin, xMax, yMin, yMax = 670, 700, 275, 235
+
+grib = m.gribchek(xMin, xMax, yMin, yMax, x, y, statusB, score)
+def gribchek(xMin, xMax, yMin, yMax, x, y, statusB, score):
+    if x >= xMin and x <= xMax and y <= yMin and y >= yMax:
+        statusB = True
+        score += 100
+
 run = True
+
+pygame.mixer.music.play(-1)
 
 while run:
     clock.tick(60)
@@ -119,27 +141,42 @@ while run:
 # условие для преседания
 
     if keys[pygame.K_LEFT] or keys[pygame.K_a]:
-        if x > 0:
-            x -= speed 
-            statusSp = 1
-            statusD = False
-        elif xbg < 0:
-            xbg += speed
-            xMin += speed
-            xMax += speed
+            if x > 136:
+                if y < trumpet1.yMax + 20 or x <= trumpet1.xMin + 10 or x >= trumpet1.xMax:
+                    if y < trumpet2.yMax + 20 or x <= trumpet2.xMin or x >= trumpet2.xMax:
+                        x -= speed 
+                        statusSp = 1
+                        statusD = False
+            elif xbg < 0:
+                xbg += speed
+                xMin += speed
+                xMax += speed
+                trumpet1.xMin += speed
+                trumpet1.xMax += speed
+                trumpet2.xMin += speed
+                trumpet2.xMax += speed
+
 
 
 # движение в лево
 
-    if keys[pygame.K_RIGHT] or keys[pygame.K_d] :
-        if x < 1340:
-            x += speed 
-            statusSp = 2
-            statusD = False
-        elif xbg < 6768:
+    if keys[pygame.K_RIGHT] or keys[pygame.K_d]:
+        if x < 1230 :
+            if y < trumpet1.yMax + 20 or x <= trumpet1.xMin or x >= trumpet1.xMax - 10:
+                if y < trumpet2.yMax + 20 or x <= trumpet2.xMin or x >= trumpet2.xMax - 10: #or y < trumpet2.yMax or x <= trumpet2.xMin or x >= trumpet2.xMax:
+                    x += speed 
+                    statusSp = 2
+                    statusD = False
+
+        elif xbg > -6768 + 1366:
             xbg -= speed
             xMin -= speed
             xMax -= speed
+            trumpet1.xMin -= speed
+            trumpet1.xMax -= speed
+            trumpet2.xMin -= speed
+            trumpet2.xMax -= speed
+
 
 # движение в право 
 
@@ -154,15 +191,20 @@ while run:
         statusD = False
 # движение в вниз
 # "y += speed"  потомушто у пайгейм другая система кординат         
-
-    #xMin, xMax, yMin, yMax = 670, 700, 275, 235   
-
-    #def gribchek(xMin, xMax, yMin, yMax):
+    '''
+    xMin, xMax, yMin, yMax = 670, 700, 275, 235   
+    m.gribchek(670, 700, 275, 235, x, y, statusB, score)
+    '''
     if x >= xMin and x <= xMax and y <= yMin and y >= yMax:
         statusB = True
-            
-    #m.gribchek(670, 700, 275, 235, x, y, statusB)
-    
+        score += 100
+    '''
+    def gribchek(xMin, xMax, yMin, yMax, x, y, statusB, score):
+        if x >= xMin and x <= xMax and y <= yMin and y >= yMax:
+            statusB = True
+            score += 100
+    '''          
+
 # Ето грибочек :)
     
     if keys[pygame.K_r]:
@@ -171,34 +213,92 @@ while run:
         statusB = True
 # переключатса между: маленькой , большой
 
-#    if keys[pygame.K_MINUS]: 
+    if keys[pygame.K_MINUS] and speed >= 2.5: 
 #        jumpMin -= 1
-#        speed -= 1
-#    if keys[pygame.K_p]:
+        speed -= 0.1
+    if keys[pygame.K_EQUALS] and speed <= 11.5:
 #        jumpMin += 1
-#        speed += 1
+        speed += 0.1
+
     if not(isjump):
         if keys[pygame.K_SPACE] or keys[pygame.K_w] or keys[pygame.K_UP]:
             isjump = True
             statusD = False
 # условия активацыи прыжка
 
+        
     else:
-        if jumpCount >= -jumpMin:
-            if jumpCount < 0:
-                y += (jumpCount ** 2) / 5
-            else:
+        if jumpCount >= -10.5:
+            if jumpCount > 0:
                 y -= (jumpCount ** 2) / 5
+            
+            else:
+                if y < trumpet1.yMax or x <= trumpet1.xMin or x >= trumpet1.xMax:
+                    if y < trumpet2.yMax or x <= trumpet2.xMin or x >= trumpet2.xMax:
+                        y += (jumpCount ** 2) / 5
+#  тут должнобыть условие                
+ 
+
             jumpCount -= 0.5
-# прыжок
+
+
+            # прыжок
         else:
             isjump = False
-            jumpCount = jumpMin
+            jumpCount = 10.5
+
+
+
 # остановка прыжка
+        
+#    if y <= trumpet1.yMax 
 
 
 
+#    else:
+#        if jumpCount >= -10.5:
+#            if jumpCount < 0:
+#                if y < trumpet1.yMax or x <= trumpet1.xMin or x >= trumpet1.xMax:
+#                    if y < trumpet2.yMax or x <= trumpet2.xMin or x >= trumpet2.xMax:
+#                        y += (jumpCount ** 2) / 5
+#            
+#            else:
+#                y -= (jumpCount ** 2) / 5
+#            jumpCount -= 0.5
+#    if isjump == False:
+#        if x < trumpet1.xMin or x > trumpet1.xMax :
+#            if y < trumpet1.yMin and y < trumpet1.yMax - 20:
+#                y += fallCount 
+
+    xxx = (xbg - (xbg * 2)) + x 
+
+    if xxx >= 6335:
+        Winner = True
+
+    time -= 1
+
+
+    time1, time2 = str(time), ("Time:")  
+    time_text = (time2 + time1)
+    x1, x2 = str(xxx), ("X:")
+    text1 = (x2 + x1)
+    y1, y2 = str(round(y, 2)), ("Y:")
+    text2 = (y2 + y1)
+    score1, score2 = str(score), ("Score:")
+    text3 = (score2 + score1)
+    speed1, speed2 = str(speed), ('Speed:') 
+    text4 = (speed2 + speed1)
     win.blit(bg, (xbg, 0))
+    m.print_text(text1, 10, 10, (255, 255, 255), win, 20)
+    m.print_text(text2, 150, 10, (255, 255, 255),win, 20)
+    m.print_text(text3, 1160, 10, (255, 255, 255),win, 20)
+    m.print_text(time_text, 900, 10, (255, 255, 255), win, 20)
+    m.print_text(text4, 700, 10, (255, 255, 255), win, 20)
+    if Winner == True:
+        m.print_text('YOU WIN', 500, 200, (255, 255, 255,), win, 50)
+        score += 10
+        time -= 29
+
     if statusB == False: 
         if isjump == True :
             if statusSp == 1:
@@ -226,18 +326,19 @@ while run:
                 if statusSp == 1:
                     win.blit(pleyerSLB, (x, y - 30))
                 elif statusSp == 2:
-                    win.blit(pleyerSRB, (x, y - 30))     
+                    win.blit(pleyer1, (x, y - 30))     
 # вот ето все (с 131 до 159) ето условия рисования того или иного марио       
-    print(speed, x, y, statusB)
 # ето временое отображение характеристик
+    
+    if time <= 0 :
+        if Winner == False:
+            m.print_text('YOU LOSE', 500, 200, (255, 255, 255,), win, 50) 
+            pygame.display.update()
+            pygame.time.delay(10000)
+            run = False 
+        else: 
+            run = False
     pygame.display.update()
-
-
-
-
-
-
-
 
 
 
