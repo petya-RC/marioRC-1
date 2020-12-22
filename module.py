@@ -12,3 +12,4 @@ def gribchek(xMin, xMax, yMin, yMax, x, y, statusB, score):
         statusB = True
         score += 100
     
+ 
