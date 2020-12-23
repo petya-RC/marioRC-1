@@ -31,14 +31,14 @@ heightBD, widthBD = 47, 34
 speed = 7.0
 
 isjump = False
-jumpCount, fallCount = 10.5, 7.5
+jumpCount, downCount = 10.5, 7.5
 
 # параметры прыжка
 
 file_path = os.path.dirname(__file__)
 
 pygame.mixer.music.load((file_path + "\saundtrek.mp3"))
-pygame.mixer.music.set_volume(0.5)
+pygame.mixer.music.set_volume(0.1)
 
 a = 0
 run_plus = True
@@ -93,22 +93,33 @@ class colaider ():
 
 
 statusSp = 2  
-statusB, statusD, Winner, p, DownUp = False, False, False, False, False
+statusB, statusD, Winner, p, DownUp, Chets = False, False, False, False, False, False
 score = 0
 time = 24000
 
 trumpet1 = colaider()
 trumpet1.xMin = 865
 trumpet1.xMax = 960
-trumpet1.yMax = 300
+trumpet1.yMax = 290
 trumpet1.yMin = 365
 
 trumpet2 = colaider()
 trumpet2.xMin = 1190
 trumpet2.xMax = 1275
-trumpet2.yMax = 250
+trumpet2.yMax = 265
 trumpet2.yMin = 365
 
+trumpet3 = colaider()
+trumpet3.xMin = 1448
+trumpet3.xMax = 1535
+trumpet3.yMax = 235
+trumpet3.yMin = 365
+
+trumpet4 = colaider()
+trumpet4.xMin = 1800
+trumpet4.xMax = 1885
+trumpet4.yMax = 235
+trumpet4.yMin = 365
 
 #keys = pygame.key.get_pressed() 
 # зажатие или нажатия клавиш
@@ -134,6 +145,9 @@ while run:
         if event.type == pygame.QUIT:
             run = False
 # условия закрытия игры
+
+    time -= 1
+
     statusD = False
 
     if keys[pygame.K_s] or keys[pygame.K_DOWN]:
@@ -143,10 +157,12 @@ while run:
     if keys[pygame.K_LEFT] or keys[pygame.K_a]:
             if x > 136:
                 if y < trumpet1.yMax + 20 or x <= trumpet1.xMin + 10 or x >= trumpet1.xMax:
-                    if y < trumpet2.yMax + 20 or x <= trumpet2.xMin or x >= trumpet2.xMax:
-                        x -= speed 
-                        statusSp = 1
-                        statusD = False
+                    if y < trumpet2.yMax + 20 or x <= trumpet2.xMin or x >= trumpet2.xMax + 5:
+                        if y < trumpet3.yMax + 20 or x <= trumpet3.xMin + 10 or x >= trumpet3.xMax:
+                            if y < trumpet4.yMax + 20 or x <= trumpet4.xMin + 10 or x >= trumpet4.xMax:
+                                x -= speed 
+                                statusSp = 1
+                                statusD = False
             elif xbg < 0:
                 xbg += speed
                 xMin += speed
@@ -155,7 +171,10 @@ while run:
                 trumpet1.xMax += speed
                 trumpet2.xMin += speed
                 trumpet2.xMax += speed
-
+                trumpet3.xMin += speed
+                trumpet3.xMax += speed                
+                trumpet4.xMin += speed
+                trumpet4.xMax += speed
 
 
 # движение в лево
@@ -163,10 +182,12 @@ while run:
     if keys[pygame.K_RIGHT] or keys[pygame.K_d]:
         if x < 1230 :
             if y < trumpet1.yMax + 20 or x <= trumpet1.xMin or x >= trumpet1.xMax - 10:
-                if y < trumpet2.yMax + 20 or x <= trumpet2.xMin or x >= trumpet2.xMax - 10: #or y < trumpet2.yMax or x <= trumpet2.xMin or x >= trumpet2.xMax:
-                    x += speed 
-                    statusSp = 2
-                    statusD = False
+                if y < trumpet2.yMax + 20 or x <= trumpet2.xMin or x >= trumpet2.xMax - 10: 
+                    if y < trumpet3.yMax + 20 or x <= trumpet3.xMin or x >= trumpet3.xMax - 10:
+                        if y < trumpet4.yMax + 20 or x <= trumpet4.xMin or x >= trumpet4.xMax - 10:
+                            x += speed 
+                            statusSp = 2
+                            statusD = False
 
         elif xbg > -6768 + 1366:
             xbg -= speed
@@ -176,19 +197,22 @@ while run:
             trumpet1.xMax -= speed
             trumpet2.xMin -= speed
             trumpet2.xMax -= speed
-
+            trumpet3.xMin -= speed
+            trumpet3.xMax -= speed
+            trumpet4.xMin -= speed
+            trumpet4.xMax -= speed
 
 # движение в право 
-
-    if keys[pygame.K_q] and y > 0:
-        y -= speed - 4  
-        statusD = False 
+    if Chets == True:
+        if keys[pygame.K_q] and y > 0:
+            y -= speed - 4  
+            statusD = False 
 # движение в вверх
 # "y -= speed"  потомушто у пайгейм другая система кординат 
 
-    if keys[pygame.K_e] and y < 410:
-        y += speed - 4 
-        statusD = False
+        if keys[pygame.K_e] and y < 410:
+            y += speed - 4 
+            statusD = False
 # движение в вниз
 # "y += speed"  потомушто у пайгейм другая система кординат         
     '''
@@ -220,7 +244,13 @@ while run:
 #        jumpMin += 1
         speed += 0.1
 
-    if not(isjump):
+    if keys[pygame.K_c]:
+        if Chets == False:
+            Chets = True
+        else:
+            Chets = False
+
+    if not(isjump) :
         if keys[pygame.K_SPACE] or keys[pygame.K_w] or keys[pygame.K_UP]:
             isjump = True
             statusD = False
@@ -228,32 +258,59 @@ while run:
 
         
     else:
-        if jumpCount >= -10.5:
+        if jumpCount >= -10.5 and DownUp == False:
             if jumpCount > 0:
-                y -= (jumpCount ** 2) / 5
-            
+                y -= (jumpCount ** 2) / 5            
             else:
-                if y < trumpet1.yMax or x <= trumpet1.xMin or x >= trumpet1.xMax:
-                    if y < trumpet2.yMax or x <= trumpet2.xMin or x >= trumpet2.xMax:
-                        y += (jumpCount ** 2) / 5
-#  тут должнобыть условие                
- 
+                    if y < trumpet1.yMax or x <= trumpet1.xMin or x >= trumpet1.xMax:
+                        if y < trumpet2.yMax or x <= trumpet2.xMin or x >= trumpet2.xMax:
+                            if y < trumpet3.yMax or x <= trumpet3.xMin or x >= trumpet3.xMax:
+                                if y < trumpet4.yMax or x <= trumpet4.xMin or x >= trumpet4.xMax:
+                                    y += (jumpCount ** 2) / 5
+                                else:
+                                    y -= 10
+                            else:
+                                y -= 10
+                        else:
+                            y -= 6
+                    else:
+                        y -= 1
 
+            #  тут должнобыть условие                
             jumpCount -= 0.5
-
-
-            # прыжок
+# прыжок
         else:
             isjump = False
             jumpCount = 10.5
-
-
-
 # остановка прыжка
-        
+    if isjump == False and Chets == False :
+        if y < 365 - 1.5: 
+            if y < trumpet1.yMax or x <= trumpet1.xMin or x >= trumpet1.xMax:
+                if y < trumpet2.yMax or x <= trumpet2.xMin or x >= trumpet2.xMax:
+                    if y < trumpet3.yMax or x <= trumpet3.xMin or x >= trumpet3.xMax:
+                        if y < trumpet4.yMax or x <= trumpet4.xMin or x >= trumpet4.xMax:
+                            DownUp = True
+        else:
+            DownUp = False
+
+        if DownUp == True:
+            if downCount >= 0.5:            
+                if y < trumpet1.yMax or x <= trumpet1.xMin or x >= trumpet1.xMax:
+                    if y < trumpet2.yMax or x <= trumpet2.xMin or x >= trumpet2.xMax:
+                        if y < trumpet3.yMax or x <= trumpet3.xMin or x >= trumpet3.xMax:
+                            if y < trumpet4.yMax or x <= trumpet4.xMin or x >= trumpet4.xMax:                        
+                                y += (downCount ** 2) / 5
+          
+                downCount -= 0.5
+# прыжок
+            else:
+                DownUp = False
+                downCount = 7.5
+
+
+
+
 #    if y <= trumpet1.yMax 
-
-
 
 #    else:
 #        if jumpCount >= -10.5:
@@ -270,23 +327,26 @@ while run:
 #            if y < trumpet1.yMin and y < trumpet1.yMax - 20:
 #                y += fallCount 
 
+    if y > 365:
+        y = 365
+
+    Up, Down = False, False
+
+
     xxx = (xbg - (xbg * 2)) + x 
 
     if xxx >= 6335:
         Winner = True
 
-    time -= 1
-
-
     time1, time2 = str(time), ("Time:")  
     time_text = (time2 + time1)
-    x1, x2 = str(xxx), ("X:")
+    x1, x2 = str(round(xxx, 2)), ("X:")
     text1 = (x2 + x1)
     y1, y2 = str(round(y, 2)), ("Y:")
     text2 = (y2 + y1)
     score1, score2 = str(score), ("Score:")
     text3 = (score2 + score1)
-    speed1, speed2 = str(speed), ('Speed:') 
+    speed1, speed2 = str(round(speed, 2)), ('Speed:') 
     text4 = (speed2 + speed1)
     win.blit(bg, (xbg, 0))
     m.print_text(text1, 10, 10, (255, 255, 255), win, 20)
@@ -327,7 +387,7 @@ while run:
                     win.blit(pleyerSLB, (x, y - 30))
                 elif statusSp == 2:
                     win.blit(pleyer1, (x, y - 30))     
-# вот ето все (с 131 до 159) ето условия рисования того или иного марио       
+# вот ето все (с 285 до 333) ето условия рисования      
 # ето временое отображение характеристик
     
     if time <= 0 :
@@ -347,7 +407,14 @@ while run:
 
 
 
-#------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
 #------------------------------------------------------------------------------------------------------------------------------------------------------------------
 #------____-----____----__________----_____-----------_____---------________________-------------------------------------------------------------------------------
 #-----|\___\---|\___\-|\__________\--|\____\---------|\____\-------|\_______________\------------------------------------------------------------------------------
