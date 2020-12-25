@@ -38,7 +38,7 @@ run_plus = True
 file_path = os.path.dirname(__file__)
 
 pygame.mixer.music.load((file_path + "\saundtrek.mp3"))
-pygame.mixer.music.set_volume(0.05)
+pygame.mixer.music.set_volume(0.1)
 
 sprite_path = os.path.join(file_path, "sprite/bg.png")  
 bg = pygame.image.load(sprite_path)
