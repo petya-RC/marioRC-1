@@ -25,10 +25,10 @@ heightS, widthS = 37, 37
 heightB, widthB = 66, 33
 heightBD, widthBD = 47, 34
 #высота, шырина
-speed = 7.0
+speed = 5.5
 
 isjump = False
-jumpCount, downCount = 10.5, 8.5
+jumpCount, downCount = 10.5, 10.5
 
 a = 0
 run_plus = True
@@ -36,10 +36,10 @@ run_plus = True
 # параметры прыжка
 
 file_path = os.path.dirname(__file__)
-
-pygame.mixer.music.load((file_path + "\saundtrek.mp3"))
+'''
+pygame.mixer.music.load((file_path + "/saundtrek2.mp3"))
 pygame.mixer.music.set_volume(0.1)
-
+'''
 sprite_path = os.path.join(file_path, "sprite/bg.png")  
 bg = pygame.image.load(sprite_path)
 sprite_path = os.path.join(file_path, "sprite/Lmario-stand-r.png")
@@ -117,7 +117,7 @@ trumpet6.yMin = 365
 block1 = colaider()
 block1.xMin = 485
 block1.xMax = 545
-block1.yMax = 235
+block1.yMax = 238
 block1.yMin = 305
 # 
 block2 = colaider()
@@ -133,10 +133,10 @@ block3.yMax = 105
 block3.yMin = 180
 
 block4 = colaider()
-block4.xMin = 2020
+block4.xMin = 2015
 block4.xMax = 2080
 block4.yMax = 205
-block4.yMin = 270
+block4.yMin = 280
 
 block5 = colaider()
 block5.xMin = 2435
@@ -385,6 +385,8 @@ pit1.xMax = 2245
 #keys = pygame.key.get_pressed() 
 # зажатие или нажатия клавиш
 
+lewelMin = 365
+
 xMin, xMax, yMin, yMax = 670, 700, 275, 235
 
 grib = m.gribchek(xMin, xMax, yMin, yMax, x, y, statusB, score)
@@ -395,7 +397,7 @@ def gribchek(xMin, xMax, yMin, yMax, x, y, statusB, score):
 
 run = True
 
-pygame.mixer.music.play(-1)
+#pygame.mixer.music.play(-1)
 
 while run:
     clock.tick(60)
@@ -422,11 +424,11 @@ while run:
                         if y < trumpet3.yMax + 10 or x <= trumpet3.xMin + 10 or x >= trumpet3.xMax:
                             if y < trumpet4.yMax + 10 or x <= trumpet4.xMin + 10 or x >= trumpet4.xMax:
                                 if y < block1.yMax + 10 or y > block1.yMin or x <= block1.xMin + 10 or x >= block1.xMax:
-                                    if y < block2.yMax + 10 or  y > block2.yMin or x <= block2.xMin + 10 or x >= block2.xMax:
+                                    if y < block2.yMax + 10 or  y > block2.yMin or x <= block2.xMin + 10 or x >= block2.xMax + 1:
                                         if y < block3.yMax + 10 or y > block3.yMin or x <= block3.xMin + 10 or x >= block3.xMax:
-                                            if y < block4.yMax + 10 or y > block4.yMin or x <= block4.xMin + 10 or x >= block4.xMax:
-                                                if y < block5.yMax + 10 or y > block5.yMin or x <= block5.xMin + 10 or x >= block5.xMax:
-                                                    if y < block6.yMax + 10 or y > block6.yMin or x <= block6.xMin + 10 or x >= block6.xMax:
+                                            if y < block4.yMax + 5 or y > block4.yMin or x <= block4.xMin + 5 or x >= block4.xMax + 5:
+                                                if y < block5.yMax + 5 or y > block5.yMin or x <= block5.xMin + 10 or x >= block5.xMax:
+                                                    if y < block6.yMax + 5 or y > block6.yMin or x <= block6.xMin + 10 or x >= block6.xMax:
                                                         if y < block7.yMax + 10 or y > block7.yMin or x <= block7.xMin + 10 or x >= block7.xMax:
                                                             if y < block8.yMax + 10 or y > block8.yMin or x <= block8.xMin + 10 or x >= block8.xMax:
                                                                 if y < block9.yMax + 10 or y > block9.yMin or x <= block9.xMin + 10 or x >= block9.xMax:
@@ -575,55 +577,55 @@ while run:
 # движение в лево
 
     if keys[pygame.K_RIGHT] or keys[pygame.K_d]:
-        if x < 1230 :
+        if x < 1230 :                                   
             if y < trumpet1.yMax + 20 or x <= trumpet1.xMin or x >= trumpet1.xMax - 10:
                 if y < trumpet2.yMax + 20 or x <= trumpet2.xMin or x >= trumpet2.xMax - 10: 
                     if y < trumpet3.yMax + 20 or x <= trumpet3.xMin or x >= trumpet3.xMax - 10:
                         if y < trumpet4.yMax + 20 or x <= trumpet4.xMin or x >= trumpet4.xMax - 10:
-                            if y < block1.yMax + 20 or y > block1.yMin or x <= block1.xMin or x >= block1.xMax - 10:
-                                if y < block2.yMax + 20 or y > block2.yMin or x <= block2.xMin or x >= block2.xMax - 10:
-                                    if y < block3.yMax + 20 or y > block3.yMin or x <= block3.xMin or x >= block3.xMax - 10:
-                                        if y < block4.yMax + 20 or y > block4.yMin or x <= block4.xMin or x >= block4.xMax - 10:
-                                            if y < block5.yMax + 20 or y > block5.yMin or x <= block5.xMin or x >= block5.xMax - 10:
-                                                if y < block6.yMax + 20 or y > block6.yMin or x <= block6.xMin or x >= block6.xMax - 10:
-                                                    if y < block7.yMax + 20 or y > block7.yMin or x <= block7.xMin or x >= block7.xMax - 10:
-                                                        if y < block8.yMax + 20 or y > block8.yMin or x <= block8.xMin or x >= block8.xMax - 10:
-                                                            if y < block9.yMax + 20 or y > block9.yMin or x <= block9.xMin or x >= block9.xMax - 10:
-                                                                if y < block10.yMax + 20 or y > block10.yMin or x <= block10.xMin or x >= block10.xMax - 10:
-                                                                    if y < block11.yMax + 20 or y > block11.yMin or x <= block11.xMin or x >= block11.xMax - 10:
-                                                                        if y < block12.yMax + 20 or y > block12.yMin or x <= block12.xMin or x >= block12.xMax - 10:
-                                                                            if y < block13.yMax + 20 or y > block13.yMin or x <= block13.xMin or x >= block13.xMax - 10:
-                                                                                if y < block14.yMax + 20 or y > block14.yMin or x <= block14.xMin or x >= block14.xMax - 10:
-                                                                                    if y < block15.yMax + 20 or y > block15.yMin or x <= block15.xMin or x >= block15.xMax - 10:
-                                                                                        if y < block16.yMax + 20 or y > block16.yMin or x <= block16.xMin or x >= block16.xMax - 10:
-                                                                                            if y < block17.yMax + 20 or y > block17.yMin or x <= block17.xMin or x >= block17.xMax - 10:
-                                                                                                if y < block18.yMax + 20 or y > block18.yMin  or x <= block18.xMin - 5 or x >= block18.xMax - 10:
-                                                                                                    if y < block19.yMax + 20 or y > block19.yMin or x <= block19.xMin - 10 or x >= block19.xMax - 10:
-                                                                                                        if y < block20.yMax + 20 or y > block20.yMin or x <= block20.xMin - 10 or x >= block20.xMax - 10:
-                                                                                                            if y < block21.yMax + 20 or y > block21.yMin or x <= block21.xMin - 10 or x >= block21.xMax - 10:
-                                                                                                                if y < block22.yMax + 20 or y > block22.yMin or x <= block22.xMin - 10 or x >= block22.xMax - 10:
-                                                                                                                    if y < block23.yMax + 20 or y > block23.yMin or x <= block23.xMin - 10 or x >= block23.xMax - 10:
-                                                                                                                        if y < block24.yMax + 20 or y > block24.yMin or x <= block24.xMin - 10 or x >= block24.xMax - 10:
-                                                                                                                            if y < block25.yMax + 20 or y > block25.yMin or x <= block25.xMin - 10 or x >= block25.xMax - 10:
-                                                                                                                                if y < block26.yMax + 20 or y > block26.yMin or x <= block26.xMin - 10 or x >= block26.xMax - 10:
-                                                                                                                                    if y < block27.yMax + 20 or y > block27.yMin or x <= block27.xMin - 10 or x >= block27.xMax - 10:
-                                                                                                                                        if y < block28.yMax + 20 or y > block28.yMin or x <= block28.xMin - 10 or x >= block28.xMax - 10:
-                                                                                                                                            if y < block29.yMax + 20 or y > block29.yMin or x <= block29.xMin - 10 or x >= block29.xMax - 10:
-                                                                                                                                                if y < block30.yMax + 20 or y > block30.yMin or x <= block30.xMin - 10 or x >= block30.xMax - 10:
-                                                                                                                                                    if y < block31.yMax + 20 or y > block31.yMin or x <= block31.xMin - 10 or x >= block31.xMax - 10:
-                                                                                                                                                        if y < block32.yMax + 20 or y > block32.yMin or x <= block32.xMin - 10 or x >= block32.xMax - 10:
-                                                                                                                                                            if y < block33.yMax + 20 or y > block33.yMin or x <= block33.xMin - 10 or x >= block33.xMax - 10:
-                                                                                                                                                                if y < block34.yMax + 20 or y > block34.yMin or x <= block34.xMin - 10 or x >= block34.xMax - 10:
-                                                                                                                                                                    if y < trumpet5.yMax + 20 or x <= trumpet5.xMin or x >= trumpet5.xMax - 10:
-                                                                                                                                                                        if y < trumpet6.yMax + 20 or x <= trumpet6.xMin or x >= trumpet6.xMax - 10:
-                                                                                                                                                                            if y < block35.yMax + 20 or y > block35.yMin or x <= block35.xMin - 10 or x >= block35.xMax - 10:
-                                                                                                                                                                                if y < block36.yMax + 20 or y > block36.yMin or x <= block36.xMin - 10 or x >= block36.xMax - 10:
-                                                                                                                                                                                    if y < block37.yMax + 20 or y > block37.yMin or x <= block37.xMin - 10 or x >= block37.xMax - 10:
-                                                                                                                                                                                        if y < block38.yMax + 20 or y > block38.yMin or x <= block38.xMin - 10 or x >= block38.xMax - 10:
-                                                                                                                                                                                            if y < block39.yMax + 20 or y > block39.yMin or x <= block39.xMin - 10 or x >= block39.xMax - 10:
-                                                                                                                                                                                                if y < block40.yMax + 20 or y > block40.yMin or x <= block40.xMin - 10 or x >= block40.xMax - 10:
-                                                                                                                                                                                                    if y < block41.yMax + 20 or y > block41.yMin or x <= block41.xMin - 10 or x >= block41.xMax - 10:
-                                                                                                                                                                                                        if y < block42.yMax + 20 or y > block42.yMin or x <= block42.xMin - 10 or x >= block42.xMax - 10:
+                            if y < block1.yMax + 10 or y > block1.yMin or x <= block1.xMin - 10 or x >= block1.xMax - 10:
+                                if y < block2.yMax + 10 or y > block2.yMin or x <= block2.xMin - 10 or x >= block2.xMax - 10:
+                                    if y < block3.yMax + 20 or y > block3.yMin or x <= block3.xMin - 10 or x >= block3.xMax - 10:
+                                        if y < block4.yMax + 10 or y > block4.yMin or x <= block4.xMin - 10 or x >= block4.xMax - 10:
+                                            if y < block5.yMax + 10 or y > block5.yMin or x <= block5.xMin - 5 or x >= block5.xMax - 10:
+                                                if y < block6.yMax + 5 or y > block6.yMin + 5 or x <= block6.xMin - 10 or x >= block6.xMax - 10:
+                                                    if y < block7.yMax + 2 or y > block7.yMin or x <= block7.xMin or x >= block7.xMax - 10:
+                                                        if y < block8.yMax + 5 or y > block8.yMin or x <= block8.xMin or x >= block8.xMax - 10:
+                                                            if y < block9.yMax + 5 or y > block9.yMin or x <= block9.xMin or x >= block9.xMax - 10:
+                                                                if y < block10.yMax + 5 or y > block10.yMin or x <= block10.xMin or x >= block10.xMax - 10:
+                                                                    if y < block11.yMax + 5 or y > block11.yMin or x <= block11.xMin or x >= block11.xMax - 10:
+                                                                        if y < block12.yMax + 10 or y > block12.yMin or x <= block12.xMin or x >= block12.xMax - 10:
+                                                                            if y < block13.yMax + 10 or y > block13.yMin or x <= block13.xMin or x >= block13.xMax - 10:
+                                                                                if y < block14.yMax + 10 or y > block14.yMin or x <= block14.xMin or x >= block14.xMax - 10:
+                                                                                    if y < block15.yMax + 10 or y > block15.yMin or x <= block15.xMin or x >= block15.xMax - 10:
+                                                                                        if y < block16.yMax + 10 or y > block16.yMin or x <= block16.xMin or x >= block16.xMax - 10:
+                                                                                            if y < block17.yMax + 10 or y > block17.yMin or x <= block17.xMin or x >= block17.xMax - 10:
+                                                                                                if y < block18.yMax + 10 or y > block18.yMin  or x <= block18.xMin - 5 or x >= block18.xMax - 10:
+                                                                                                    if y < block19.yMax + 10 or y > block19.yMin or x <= block19.xMin - 10 or x >= block19.xMax - 10:
+                                                                                                        if y < block20.yMax + 10 or y > block20.yMin or x <= block20.xMin - 10 or x >= block20.xMax - 10:
+                                                                                                            if y < block21.yMax + 10 or y > block21.yMin or x <= block21.xMin - 10 or x >= block21.xMax - 10:
+                                                                                                                if y < block22.yMax + 10 or y > block22.yMin or x <= block22.xMin - 10 or x >= block22.xMax - 10:
+                                                                                                                    if y < block23.yMax + 10 or y > block23.yMin or x <= block23.xMin - 10 or x >= block23.xMax - 10:
+                                                                                                                        if y < block24.yMax + 10 or y > block24.yMin or x <= block24.xMin - 10 or x >= block24.xMax - 10:
+                                                                                                                            if y < block25.yMax + 10 or y > block25.yMin or x <= block25.xMin - 10 or x >= block25.xMax - 10:
+                                                                                                                                if y < block26.yMax + 10 or y > block26.yMin or x <= block26.xMin - 10 or x >= block26.xMax - 10:
+                                                                                                                                    if y < block27.yMax + 10 or y > block27.yMin or x <= block27.xMin - 10 or x >= block27.xMax - 10:
+                                                                                                                                        if y < block28.yMax + 10 or y > block28.yMin or x <= block28.xMin - 10 or x >= block28.xMax - 10:
+                                                                                                                                            if y < block29.yMax + 10 or y > block29.yMin or x <= block29.xMin - 10 or x >= block29.xMax - 10:
+                                                                                                                                                if y < block30.yMax + 10 or y > block30.yMin or x <= block30.xMin - 10 or x >= block30.xMax - 10:
+                                                                                                                                                    if y < block31.yMax + 10 or y > block31.yMin or x <= block31.xMin - 10 or x >= block31.xMax - 10:
+                                                                                                                                                        if y < block32.yMax + 10 or y > block32.yMin or x <= block32.xMin - 10 or x >= block32.xMax - 10:
+                                                                                                                                                            if y < block33.yMax + 10 or y > block33.yMin or x <= block33.xMin - 10 or x >= block33.xMax - 10:
+                                                                                                                                                                if y < block34.yMax + 10 or y > block34.yMin or x <= block34.xMin - 10 or x >= block34.xMax - 10:
+                                                                                                                                                                    if y < trumpet5.yMax + 10 or x <= trumpet5.xMin or x >= trumpet5.xMax - 10:
+                                                                                                                                                                        if y < trumpet6.yMax + 10 or x <= trumpet6.xMin or x >= trumpet6.xMax - 10:
+                                                                                                                                                                            if y < block35.yMax + 10 or y > block35.yMin or x <= block35.xMin - 10 or x >= block35.xMax - 10:
+                                                                                                                                                                                if y < block36.yMax + 10 or y > block36.yMin or x <= block36.xMin - 10 or x >= block36.xMax - 10:
+                                                                                                                                                                                    if y < block37.yMax + 10 or y > block37.yMin or x <= block37.xMin - 10 or x >= block37.xMax - 10:
+                                                                                                                                                                                        if y < block38.yMax + 10 or y > block38.yMin or x <= block38.xMin - 10 or x >= block38.xMax - 10:
+                                                                                                                                                                                            if y < block39.yMax + 10 or y > block39.yMin or x <= block39.xMin - 10 or x >= block39.xMax - 10:
+                                                                                                                                                                                                if y < block40.yMax + 10 or y > block40.yMin or x <= block40.xMin - 10 or x >= block40.xMax - 10:
+                                                                                                                                                                                                    if y < block41.yMax + 10 or y > block41.yMin or x <= block41.xMin - 10 or x >= block41.xMax - 10:
+                                                                                                                                                                                                        if y < block42.yMax + 10 or y > block42.yMin or x <= block42.xMin - 10 or x >= block42.xMax - 10:
                                                                                                                                                                                                             x += speed 
                                                                                                                                                                                                             statusSp = 2
                                                                                                                                                                                                             statusD = False
@@ -779,127 +781,6 @@ while run:
         else:
             Chets = False
 
-    if not(isjump) :
-        if keys[pygame.K_SPACE] or keys[pygame.K_w] or keys[pygame.K_UP]:
-            isjump = True
-            statusD = False
-# условия активацыи прыжка
-
-        
-    else:
-        if jumpCount >= -10.5 and DownUp == False:
-            if jumpCount > 0:
-                if y < block1.yMax + 10 or y > block1.yMin or x <= block1.xMin - 5 or x >= block1.xMax - 5:
-                    if y < block2.yMax + 10 or y > block2.yMin or x <= block2.xMin - 5 or x >= block2.xMax - 5:
-                        if y < block3.yMax + 10 or y > block3.yMin or x <= block3.xMin - 5 or x >= block3.xMax - 5:
-                            if y < block4.yMax + 10 or y > block4.yMin or x <= block4.xMin - 5 or x >= block4.xMax - 5:
-                                if y < block5.yMax + 10 or y > block5.yMin or x <= block5.xMin - 5 or x >= block5.xMax - 5:
-                                    if y < block6.yMax + 10 or y > block6.yMin or x <= block6.xMin - 5 or x >= block6.xMax - 5:
-                                        if y < block7.yMax + 10 or y > block7.yMin or x <= block7.xMin - 5 or x >= block7.xMax - 5:
-                                            if y < block8.yMax + 10 or y > block8.yMin or x <= block8.xMin - 5 or x >= block8.xMax - 5:
-                                                if y < block9.yMax + 10 or y > block9.yMin or x <= block9.xMin - 5 or x >= block9.xMax - 5:
-                                                    if y < block10.yMax + 10 or y > block10.yMin or x <= block10.xMin - 5 or x >= block10.xMax - 5:
-                                                        if y < block11.yMax + 10 or y > block11.yMin or x <= block11.xMin - 5 or x >= block11.xMax - 5:
-                                                            if y < block12.yMax + 10 or y > block12.yMin or x <= block12.xMin - 5 or x >= block12.xMax - 5:
-                                                                if y < block13.yMax + 10 or y > block13.yMin or x <= block13.xMin - 5 or x >= block13.xMax - 5:
-                                                                    if y < block14.yMax + 10 or y > block14.yMin or x <= block14.xMin - 5 or x >= block14.xMax - 5:
-                                                                        if y < block15.yMax + 10 or y > block15.yMin or x <= block15.xMin - 5 or x >= block15.xMax - 5:
-                                                                            if y < block16.yMax + 10 or y > block16.yMin or x <= block16.xMin - 5 or x >= block16.xMax - 5:
-                                                                                if y < block17.yMax + 10 or y > block17.yMin or x <= block17.xMin - 5 or x >= block17.xMax - 5:
-                                                                                    if y < block18.yMax + 10 or y > block18.yMin or x <= block18.xMin - 5 or x >= block18.xMax - 5:
-                                                                                        if y < block19.yMax + 10 or y > block19.yMin or x <= block19.xMin - 5 or x >= block19.xMax - 5:
-                                                                                            if y < block20.yMax + 10 or y > block20.yMin or x <= block20.xMin - 5 or x >= block20.xMax - 5:
-                                                                                                if y < block21.yMax + 10 or y > block21.yMin or x <= block21.xMin - 5 or x >= block21.xMax - 5:
-                                                                                                    if y < block22.yMax + 10 or y > block22.yMin or x <= block22.xMin - 5 or x >= block22.xMax - 5:
-                                                                                                        if y < block23.yMax + 10 or y > block23.yMin or x <= block23.xMin - 5 or x >= block23.xMax - 5:
-                                                                                                            if y < block24.yMax + 10 or y > block24.yMin or x <= block24.xMin - 5 or x >= block24.xMax - 5:
-                                                                                                                if y < block25.yMax + 10 or y > block25.yMin or x <= block25.xMin - 5 or x >= block25.xMax - 5:
-                                                                                                                    if y < block26.yMax + 10 or y > block26.yMin or x <= block26.xMin - 5 or x >= block26.xMax - 5:
-                                                                                                                        if y < block27.yMax + 10 or y > block27.yMin or x <= block27.xMin - 5 or x >= block27.xMax - 5:
-                                                                                                                            if y < block28.yMax + 10 or y > block28.yMin or x <= block28.xMin - 5 or x >= block28.xMax - 5:
-                                                                                                                                if y < block29.yMax + 10 or y > block29.yMin or x <= block29.xMin - 5 or x >= block29.xMax - 5:
-                                                                                                                                    if y < block30.yMax + 10 or y > block30.yMin or x <= block30.xMin - 5 or x >= block30.xMax - 5:
-                                                                                                                                        if y < block31.yMax + 10 or y > block31.yMin or x <= block31.xMin - 5 or x >= block31.xMax - 5:
-                                                                                                                                            if y < block32.yMax + 10 or y > block32.yMin or x <= block32.xMin - 5 or x >= block32.xMax - 5:
-                                                                                                                                                if y < block33.yMax + 10 or y > block33.yMin or x <= block33.xMin - 5 or x >= block33.xMax - 5:
-                                                                                                                                                    if y < block34.yMax + 10 or y > block34.yMin or x <= block34.xMin - 5 or x >= block34.xMax - 5:
-                                                                                                                                                        if y < block35.yMax + 10 or y > block35.yMin or x <= block35.xMin - 5 or x >= block35.xMax - 5:
-                                                                                                                                                            if y < block36.yMax + 10 or y > block36.yMin or x <= block36.xMin - 5 or x >= block36.xMax - 5:
-                                                                                                                                                                if y < block37.yMax + 10 or y > block37.yMin or x <= block37.xMin - 5 or x >= block37.xMax - 5:
-                                                                                                                                                                    if y < block38.yMax + 10 or y > block38.yMin or x <= block38.xMin - 5 or x >= block38.xMax - 5:
-                                                                                                                                                                        if y < block39.yMax + 10 or y > block39.yMin or x <= block39.xMin - 5 or x >= block39.xMax - 5:
-                                                                                                                                                                            if y < block40.yMax + 10 or y > block40.yMin or x <= block40.xMin - 5 or x >= block40.xMax - 5:
-                                                                                                                                                                                if y < block41.yMax + 10 or y > block41.yMin or x <= block41.xMin - 5 or x >= block41.xMax - 5:
-                                                                                                                                                                                    if y < block42.yMax + 10 or y > block42.yMin or x <= block42.xMin - 5 or x >= block42.xMax - 5:
-                                                                                                                                                                                        y -= (jumpCount ** 2) / 5            
-            else:
-                    if y < trumpet1.yMax or x <= trumpet1.xMin or x >= trumpet1.xMax - 5:
-                        if y < trumpet2.yMax or x <= trumpet2.xMin or x >= trumpet2.xMax - 5:
-                            if y < trumpet3.yMax or x <= trumpet3.xMin or x >= trumpet3.xMax - 5:
-                                if y < trumpet4.yMax or x <= trumpet4.xMin or x >= trumpet4.xMax - 5:
-                                    if y < block1.yMax or x <= block1.xMin or x >= block1.xMax - 5:
-                                        if y < block2.yMax or x <= block2.xMin or x >= block2.xMax - 5:
-                                            if y < block3.yMax or x <= block3.xMin or x >= block3.xMax - 5: 
-                                                if y < block4.yMax or x <= block4.xMin or x >= block4.xMax - 5:
-                                                    if y < block5.yMax or x <= block5.xMin or x >= block5.xMax - 5:
-                                                        if y < block6.yMax or x <= block6.xMin or x >= block6.xMax - 5:
-                                                            if y < block7.yMax or x <= block7.xMin or x >= block7.xMax - 5: 
-                                                                if y < block8.yMax or x <= block8.xMin or x >= block8.xMax - 5:
-                                                                    if y < block9.yMax or x <= block9.xMin or x >= block9.xMax - 5:
-                                                                        if y < block10.yMax or x <= block10.xMin or x >= block10.xMax - 5:
-                                                                            if y < block11.yMax or x <= block11.xMin or x >= block11.xMax - 5:
-                                                                                if y < block12.yMax or x <= block12.xMin or x >= block12.xMax - 5:
-                                                                                    if y < block13.yMax or x <= block13.xMin or x >= block13.xMax - 5:
-                                                                                        if y < block14.yMax or x <= block14.xMin or x >= block14.xMax - 5:
-                                                                                            if y < block15.yMax or x <= block15.xMin or x >= block15.xMax - 5:
-                                                                                                if y < block16.yMax or x <= block16.xMin or x >= block16.xMax - 5:
-                                                                                                    if y < block17.yMax or x <= block17.xMin or x >= block17.xMax - 5:
-                                                                                                        if y < block18.yMax or x <= block18.xMin or x >= block18.xMax - 5:
-                                                                                                            if y < block19.yMax or x <= block19.xMin or x >= block19.xMax - 5: 
-                                                                                                                if y < block20.yMax or x <= block20.xMin or x >= block20.xMax - 5:
-                                                                                                                    if y < block21.yMax or x <= block21.xMin or x >= block21.xMax - 5: 
-                                                                                                                        if y < block22.yMax or x <= block22.xMin or x >= block22.xMax - 5:
-                                                                                                                            if y < block23.yMax or x <= block23.xMin or x >= block23.xMax - 5: 
-                                                                                                                                if y < block24.yMax or x <= block24.xMin or x >= block24.xMax - 5 :
-                                                                                                                                    if y < block25.yMax or x <= block25.xMin or x >= block25.xMax - 5:
-                                                                                                                                        if y < block26.yMax or x <= block26.xMin or x >= block26.xMax - 5:
-                                                                                                                                            if y < block27.yMax or x <= block27.xMin or x >= block27.xMax - 5: 
-                                                                                                                                                if y < block28.yMax or x <= block28.xMin or x >= block28.xMax - 5:
-                                                                                                                                                    if y < block29.yMax or x <= block29.xMin or x >= block29.xMax - 5: 
-                                                                                                                                                        if y < block30.yMax or x <= block30.xMin or x >= block30.xMax - 5:
-                                                                                                                                                            if y < block31.yMax or x <= block31.xMin or x >= block31.xMax - 5: 
-                                                                                                                                                                if y < block32.yMax or x <= block32.xMin or x >= block32.xMax - 5:
-                                                                                                                                                                    if y < block33.yMax or x <= block33.xMin or x >= block33.xMax - 5:
-                                                                                                                                                                        if y < trumpet5.yMax or x <= trumpet5.xMin or x >= trumpet5.xMax - 5:
-                                                                                                                                                                            if y < trumpet6.yMax or x <= trumpet6.xMin or x >= trumpet6.xMax - 5:
-                                                                                                                                                                                if y < block34.yMax or x <= block34.xMin or x >= block34.xMax - 5:
-                                                                                                                                                                                    #
-                                                                                                                                                                                    if y < block35.yMax or x <= block35.xMin or x >= block35.xMax - 5:  
-                                                                                                                                                                                        if y < block36.yMax or x <= block36.xMin or x >= block36.xMax - 5:  
-                                                                                                                                                                                            if y < block37.yMax or x <= block37.xMin or x >= block37.xMax - 5: 
-                                                                                                                                                                                                if y < block38.yMax or x <= block38.xMin or x >= block38.xMax - 5:  
-                                                                                                                                                                                                    if y < block39.yMax or x <= block39.xMin or x >= block39.xMax - 5:    
-                                                                                                                                                                                                        if y < block40.yMax or x <= block40.xMin or x >= block40.xMax - 5:  
-                                                                                                                                                                                                            if y < block41.yMax or x <= block41.xMin or x >= block41.xMax - 5:  
-                                                                                                                                                                                                                if y < block42.yMax or x <= block42.xMin or x >= block42.xMax - 5:                                                                            
-                                                                                                                                                                                                                    y += (jumpCount ** 2) / 5                         
-                                else:
-                                    y -= 10
-                            else:
-                                y -= 10
-                        else:
-                            y -= 6
-                    else:
-                        y -= 1
-
-            #  тут должнобыть условие                
-            jumpCount -= 0.5
-# прыжок
-        else:
-            isjump = False
-            jumpCount = 10.5
-# остановка прыжка
-
 
 
     if isjump == False and Chets == False :
@@ -912,7 +793,7 @@ while run:
                                 if y > block2.yMin - 10 or y < block2.yMax or x <= block2.xMin + 20 or x >= block2.xMax - 20:
                                     if y > block3.yMin - 10 or y < block3.yMax or x <= block3.xMin + 20 or x >= block3.xMax - 20:
                                         if y > block4.yMin - 10 or y < block4.yMax or x <= block4.xMin + 20 or x >= block4.xMax - 20:
-                                            if y > block5.yMin - 10 or y < block5.yMax or x <= block5.xMin + 20 or x >= block5.xMax - 20:
+                                            if y > block5.yMin - 10 or y < block5.yMax or x <= block5.xMin + 10 or x >= block5.xMax - 20:
                                                 if y > block6.yMin - 10 or y < block6.yMax or x <= block6.xMin + 20 or x >= block6.xMax - 20:
                                                     if y > block7.yMin - 10 or y < block7.yMax or x <= block7.xMin + 20 or x >= block7.xMax - 20:
                                                         if y > block8.yMin - 10 or y < block8.yMax or x <= block8.xMin + 20 or x >= block8.xMax - 20:
@@ -1016,7 +897,135 @@ while run:
 # прыжок
             else:
                 DownUp = False
-                downCount = 7.5
+                downCount = 9.0
+
+
+    if not(isjump) and DownUp == False:
+        if keys[pygame.K_SPACE] or keys[pygame.K_w] or keys[pygame.K_UP]:
+            isjump = True
+            statusD = False
+# условия активацыи прыжка
+
+        
+    else:
+        # подем (У -)
+        if jumpCount >= -10.5 and DownUp == False:
+            if jumpCount > 0:
+                if y < block1.yMax + 10 or y > block1.yMin or x <= block1.xMin - 5 or x >= block1.xMax - 5:
+                    if y < block2.yMax + 10 or y > block2.yMin or x <= block2.xMin - 5 or x >= block2.xMax - 5:
+                        if y < block3.yMax + 10 or y > block3.yMin or x <= block3.xMin - 5 or x >= block3.xMax - 5:
+                            if y < block4.yMax + 10 or y > block4.yMin or x <= block4.xMin - 5 or x >= block4.xMax - 5:
+                                if y < block5.yMax + 10 or y > block5.yMin or x <= block5.xMin + 5 or x >= block5.xMax - 5:
+                                    if y < block6.yMax + 10 or y > block6.yMin or x <= block6.xMin - 10 or x >= block6.xMax - 5:
+                                        if y < block7.yMax + 10 or y > block7.yMin  or x <= block7.xMin + 5 or x >= block7.xMax - 5:
+                                            if y < block8.yMax + 10 or y > block8.yMin or x <= block8.xMin - 5 or x >= block8.xMax - 5:
+                                                if y < block9.yMax + 10 or y > block9.yMin or x <= block9.xMin - 5 or x >= block9.xMax - 5:
+                                                    if y < block10.yMax + 10 or y > block10.yMin or x <= block10.xMin - 5 or x >= block10.xMax - 5:
+                                                        if y < block11.yMax + 10 or y > block11.yMin or x <= block11.xMin - 5 or x >= block11.xMax - 5:
+                                                            if y < block12.yMax + 10 or y > block12.yMin or x <= block12.xMin - 5 or x >= block12.xMax - 5:
+                                                                if y < block13.yMax + 10 or y > block13.yMin or x <= block13.xMin - 5 or x >= block13.xMax - 5:
+                                                                    if y < block14.yMax + 10 or y > block14.yMin or x <= block14.xMin - 5 or x >= block14.xMax - 5:
+                                                                        if y < block15.yMax + 10 or y > block15.yMin or x <= block15.xMin - 5 or x >= block15.xMax - 5:
+                                                                            if y < block16.yMax + 10 or y > block16.yMin or x <= block16.xMin - 5 or x >= block16.xMax - 5:
+                                                                                if y < block17.yMax + 10 or y > block17.yMin or x <= block17.xMin - 5 or x >= block17.xMax - 5:
+                                                                                    if y < block18.yMax + 10 or y > block18.yMin or x <= block18.xMin - 5 or x >= block18.xMax - 5:
+                                                                                        if y < block19.yMax + 10 or y > block19.yMin or x <= block19.xMin - 5 or x >= block19.xMax - 5:
+                                                                                            if y < block20.yMax + 10 or y > block20.yMin or x <= block20.xMin - 5 or x >= block20.xMax - 5:
+                                                                                                if y < block21.yMax + 10 or y > block21.yMin or x <= block21.xMin - 5 or x >= block21.xMax - 5:
+                                                                                                    if y < block22.yMax + 10 or y > block22.yMin or x <= block22.xMin - 5 or x >= block22.xMax - 5:
+                                                                                                        if y < block23.yMax + 10 or y > block23.yMin or x <= block23.xMin - 5 or x >= block23.xMax - 5:
+                                                                                                            if y < block24.yMax + 10 or y > block24.yMin or x <= block24.xMin - 5 or x >= block24.xMax - 5:
+                                                                                                                if y < block25.yMax + 10 or y > block25.yMin or x <= block25.xMin - 5 or x >= block25.xMax - 5:
+                                                                                                                    if y < block26.yMax + 10 or y > block26.yMin or x <= block26.xMin - 5 or x >= block26.xMax - 5:
+                                                                                                                        if y < block27.yMax + 10 or y > block27.yMin or x <= block27.xMin - 5 or x >= block27.xMax - 5:
+                                                                                                                            if y < block28.yMax + 10 or y > block28.yMin or x <= block28.xMin - 5 or x >= block28.xMax - 5:
+                                                                                                                                if y < block29.yMax + 10 or y > block29.yMin or x <= block29.xMin - 5 or x >= block29.xMax - 5:
+                                                                                                                                    if y < block30.yMax + 10 or y > block30.yMin or x <= block30.xMin - 5 or x >= block30.xMax - 5:
+                                                                                                                                        if y < block31.yMax + 10 or y > block31.yMin or x <= block31.xMin - 5 or x >= block31.xMax - 5:
+                                                                                                                                            if y < block32.yMax + 10 or y > block32.yMin or x <= block32.xMin - 5 or x >= block32.xMax - 5:
+                                                                                                                                                if y < block33.yMax + 10 or y > block33.yMin or x <= block33.xMin - 5 or x >= block33.xMax - 5:
+                                                                                                                                                    if y < block34.yMax + 10 or y > block34.yMin or x <= block34.xMin - 5 or x >= block34.xMax - 5:
+                                                                                                                                                        if y < block35.yMax + 10 or y > block35.yMin or x <= block35.xMin - 5 or x >= block35.xMax - 5:
+                                                                                                                                                            if y < block36.yMax + 10 or y > block36.yMin or x <= block36.xMin - 5 or x >= block36.xMax - 5:
+                                                                                                                                                                if y < block37.yMax + 10 or y > block37.yMin or x <= block37.xMin - 5 or x >= block37.xMax - 5:
+                                                                                                                                                                    if y < block38.yMax + 10 or y > block38.yMin or x <= block38.xMin - 5 or x >= block38.xMax - 5:
+                                                                                                                                                                        if y < block39.yMax + 10 or y > block39.yMin or x <= block39.xMin - 5 or x >= block39.xMax - 5:
+                                                                                                                                                                            if y < block40.yMax + 10 or y > block40.yMin or x <= block40.xMin - 5 or x >= block40.xMax - 5:
+                                                                                                                                                                                if y < block41.yMax + 10 or y > block41.yMin or x <= block41.xMin - 5 or x >= block41.xMax - 5:
+                                                                                                                                                                                    if y < block42.yMax + 10 or y > block42.yMin or x <= block42.xMin - 5 or x >= block42.xMax - 5:
+                                                                                                                                                                                        y -= (jumpCount ** 2) / 5            
+            else: # спуск после прыжка (У -) 
+                    if y < trumpet1.yMax or x <= trumpet1.xMin or x >= trumpet1.xMax - 5:
+                        if y < trumpet2.yMax or x <= trumpet2.xMin or x >= trumpet2.xMax - 5:
+                            if y < trumpet3.yMax or x <= trumpet3.xMin or x >= trumpet3.xMax - 5:
+                                if y < trumpet4.yMax or x <= trumpet4.xMin or x >= trumpet4.xMax - 5:
+                                    if y < block1.yMax - 5 or x <= block1.xMin - 5 or x >= block1.xMax - 5:
+                                        if y < block2.yMax or x <= block2.xMin - 5 or x >= block2.xMax - 5:
+                                            if y < block3.yMax or x <= block3.xMin or x >= block3.xMax - 5: 
+                                                if y < block4.yMax or x <= block4.xMin or x >= block4.xMax - 5:
+                                                    if y < block5.yMax or x <= block5.xMin or x >= block5.xMax - 5:
+                                                        if y < block6.yMax or x <= block6.xMin or x >= block6.xMax - 5:
+                                                            if y < block7.yMax or x <= block7.xMin or x >= block7.xMax - 5: 
+                                                                if y < block8.yMax or x <= block8.xMin or x >= block8.xMax - 5:
+                                                                    if y < block9.yMax or x <= block9.xMin or x >= block9.xMax - 5:
+                                                                        if y < block10.yMax or x <= block10.xMin or x >= block10.xMax - 5:
+                                                                            if y < block11.yMax or x <= block11.xMin or x >= block11.xMax - 5:
+                                                                                if y < block12.yMax or x <= block12.xMin or x >= block12.xMax - 5:
+                                                                                    if y < block13.yMax or x <= block13.xMin or x >= block13.xMax - 5:
+                                                                                        if y < block14.yMax or x <= block14.xMin or x >= block14.xMax - 5:
+                                                                                            if y < block15.yMax or x <= block15.xMin or x >= block15.xMax - 5:
+                                                                                                if y < block16.yMax or x <= block16.xMin or x >= block16.xMax - 5:
+                                                                                                    if y < block17.yMax or x <= block17.xMin or x >= block17.xMax - 5:
+                                                                                                        if y < block18.yMax or x <= block18.xMin or x >= block18.xMax - 5:
+                                                                                                            if y < block19.yMax or x <= block19.xMin or x >= block19.xMax - 5: 
+                                                                                                                if y < block20.yMax or x <= block20.xMin or x >= block20.xMax - 5:
+                                                                                                                    if y < block21.yMax or x <= block21.xMin or x >= block21.xMax - 5: 
+                                                                                                                        if y < block22.yMax or x <= block22.xMin or x >= block22.xMax - 5:
+                                                                                                                            if y < block23.yMax or x <= block23.xMin or x >= block23.xMax - 5: 
+                                                                                                                                if y < block24.yMax or x <= block24.xMin or x >= block24.xMax - 5 :
+                                                                                                                                    if y < block25.yMax or x <= block25.xMin or x >= block25.xMax - 5:
+                                                                                                                                        if y < block26.yMax or x <= block26.xMin or x >= block26.xMax - 5:
+                                                                                                                                            if y < block27.yMax or x <= block27.xMin or x >= block27.xMax - 5: 
+                                                                                                                                                if y < block28.yMax or x <= block28.xMin or x >= block28.xMax - 5:
+                                                                                                                                                    if y < block29.yMax or x <= block29.xMin or x >= block29.xMax - 5: 
+                                                                                                                                                        if y < block30.yMax or x <= block30.xMin or x >= block30.xMax - 5:
+                                                                                                                                                            if y < block31.yMax or x <= block31.xMin or x >= block31.xMax - 5: 
+                                                                                                                                                                if y < block32.yMax or x <= block32.xMin or x >= block32.xMax - 5:
+                                                                                                                                                                    if y < block33.yMax or x <= block33.xMin or x >= block33.xMax - 5:
+                                                                                                                                                                        if y < trumpet5.yMax or x <= trumpet5.xMin or x >= trumpet5.xMax - 5:
+                                                                                                                                                                            if y < trumpet6.yMax or x <= trumpet6.xMin or x >= trumpet6.xMax - 5:
+                                                                                                                                                                                if y < block34.yMax or x <= block34.xMin or x >= block34.xMax - 5:
+                                                                                                                                                                                    #
+                                                                                                                                                                                    if y < block35.yMax or x <= block35.xMin or x >= block35.xMax - 5:  
+                                                                                                                                                                                        if y < block36.yMax or x <= block36.xMin or x >= block36.xMax - 5:  
+                                                                                                                                                                                            if y < block37.yMax or x <= block37.xMin or x >= block37.xMax - 5: 
+                                                                                                                                                                                                if y < block38.yMax or x <= block38.xMin or x >= block38.xMax - 5:  
+                                                                                                                                                                                                    if y < block39.yMax or x <= block39.xMin or x >= block39.xMax - 5:    
+                                                                                                                                                                                                        if y < block40.yMax or x <= block40.xMin or x >= block40.xMax - 5:  
+                                                                                                                                                                                                            if y < block41.yMax or x <= block41.xMin or x >= block41.xMax - 5:  
+                                                                                                                                                                                                                if y < block42.yMax or x <= block42.xMin or x >= block42.xMax - 5:                                                                            
+                                                                                                                                                                                                                    y += (jumpCount ** 2) / 5                         
+                                else:
+                                    y -= 10
+                            else:
+                                y -= 10
+                        else:
+                            y -= 6
+                    else:
+                        y -= 1
+
+            #  тут должнобыть условие                
+            jumpCount -= 0.5
+# прыжок
+        else:
+            isjump = False
+            jumpCount = 10.5
+# остановка прыжка
+
+
+
+
+
 
 #pit1.xMin = 2205
 #pit1.xMax = 2245
@@ -1024,9 +1033,27 @@ while run:
 #    if x >= pit1.xMin or x <= pit1.xMax : 
 #        Down = True
 #    else:
+
+    if x <= block1.xMax and x >= block1.xMin and y < block1.yMin - 5 and y >= block1.yMax:
+        y = block1.yMax
+    if x <= block2.xMax and x >= block2.xMin and y < block2.yMin - 5 and y >= block2.yMax:
+        y = block2.yMax
+    if x <= block2.xMax and x >= block2.xMin and y < block2.yMin - 5 and y >= block2.yMax:
+        y = block2.yMax
+    if x <= block6.xMax and x >= block6.xMin and y < block6.yMin - 5 and y >= block6.yMax:
+        y = block6.yMax
+    if x <= block5.xMax and x >= block5.xMin and y < block5.yMin - 5 and y >= block5.yMax:
+        y = block5.yMax
+
+    p = False
+
+    if x >= pit1.xMin or x <= pit1.xMax: 
+        p = True
     if y > 365:
         y = 365
 
+
+    
 
     xxx = (xbg - (xbg * 2)) + x 
 
@@ -1051,6 +1078,7 @@ while run:
     m.print_text(text4, 700, 10, (255, 255, 255), win, 20)
     if Winner == True:
         m.print_text('YOU WIN', 500, 200, (255, 255, 255,), win, 50)
+        m.print_text(text3, 500, 200, (255, 255, 255),win, 15)
         score += 10
         time -= 29
 
@@ -1087,7 +1115,7 @@ while run:
     
     if time <= 0 or y >= 448:
         if Winner == False:
-            m.print_text('YOU LOSE', 500, 200, (255, 255, 255,), win, 50) 
+            m.print_text('YOU LOSE', 500, 200, (255, 255, 255,), win, 50)
             pygame.display.update()
             pygame.time.delay(10000)
             run = False 
